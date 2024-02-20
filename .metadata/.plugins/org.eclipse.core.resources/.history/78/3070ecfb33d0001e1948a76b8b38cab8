@@ -1,0 +1,12 @@
+package PantallasService;
+
+import Controllers.AppController;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
+public class ActualizarArticuloService extends AppController {
+	@FXML
+	private TextField tfNombre;
+	@FXML
+	private TextField tfPrecio;
+}

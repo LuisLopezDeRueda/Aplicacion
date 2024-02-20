@@ -1,0 +1,30 @@
+package Controllers;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+public class Test {
+
+	public static void main(String[] args) {
+		String text = "hola";
+		String adios = "hola";
+		MessageDigest digest;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(text.getBytes(StandardCharsets.UTF_8));
+			String encoded = Base64.getEncoder().encodeToString(hash);
+			byte[] hash2 = digest.digest(adios.getBytes(StandardCharsets.UTF_8));
+			String encoded2 = Base64.getEncoder().encodeToString(hash2);
+			System.out.println(encoded);
+			System.out.println(encoded2);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

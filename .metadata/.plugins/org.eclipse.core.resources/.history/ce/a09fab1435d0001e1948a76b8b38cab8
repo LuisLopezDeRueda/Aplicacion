@@ -1,0 +1,27 @@
+package PantallasService;
+
+import Controllers.AppController;
+import Service.ArticuloException;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
+public class BorrarArticuloService extends AppController {
+	@FXML
+	private TextField tfCodigo;
+
+	@FXML
+	public void borrar() {
+		try {
+			service.consultarArticulo(tfCodigo.getText());
+				
+		} catch (ArticuloException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void atras() {
+		irGestoriarArticulos();
+	}
+}

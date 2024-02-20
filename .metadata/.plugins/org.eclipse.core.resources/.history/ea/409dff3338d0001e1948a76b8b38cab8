@@ -1,0 +1,35 @@
+package PantallasService;
+
+import Controllers.AppController;
+import Service.ArticuloException;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
+public class ActualizarArticuloService extends AppController {
+	@FXML
+	private TextField tfNombre;
+	@FXML
+	private TextField tfPrecio;
+
+	@FXML
+	public void actualizar() {
+		try {
+			service.consultarArticulo(tfNombre.getText());
+
+			service.actualizarArticulo(Long.parseLong(tfPrecio.getText()), tfNombre.getText());
+			alertInformativa("El articulo " + tfNombre.getText() + " se ha actualizado correctamente");
+		} catch (NumberFormatException e) {
+			alertInformativa("El precio no es valido");
+			tfPrecio.setText("");
+		} catch (ArticuloException e) {
+			alertInformativa(e.getMessage());
+			tfNombre.setText("");
+			return;
+		}
+	}
+
+	@FXML
+	public void atras() {
+		irGestoriarArticulos();
+	}
+}

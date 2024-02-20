@@ -4,6 +4,7 @@ import java.util.List;
 
 import Controllers.AppController;
 import Modelo.Articulo;
+import Service.ArticuloException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -16,15 +17,19 @@ public class ArticuloCrearService extends AppController {
 	@FXML
 	public void crearArticulo() {
 		try {
+
+			if (service.consultarArticuloNombre(tfNombre.getText()) != null) {
+				throw new ArticuloException();
+			}
 			service.insertarArticulo(
 					new Articulo(tfNombre.getText(), Double.parseDouble(tfPrecio.getText()), codBarras()));
 			alertInformativa("Articulo " + tfNombre.getText() + " creado correctamente");
 			tfNombre.setText("");
 			tfPrecio.setText("");
-		} catch (
-
-		NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			alert("Datos indicados no validos");
+		} catch (ArticuloException e) {
+			alert(e.getMessage());
 		}
 	}
 
@@ -37,6 +42,6 @@ public class ArticuloCrearService extends AppController {
 
 	@FXML
 	public void atras() {
-		irUsuario();
+		irGestoriarArticulos();
 	}
 }

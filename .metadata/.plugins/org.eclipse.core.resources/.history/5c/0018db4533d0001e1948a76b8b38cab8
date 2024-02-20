@@ -1,0 +1,13 @@
+package PantallasService;
+
+import Controllers.AppController;
+import javafx.fxml.FXML;
+
+public class GestionarArticulosService extends AppController{
+
+	@FXML
+	public void irAñadir() {
+		irArticuloCrear()
+	}
+	
+}

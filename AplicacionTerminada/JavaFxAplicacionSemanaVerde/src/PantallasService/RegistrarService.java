@@ -24,8 +24,8 @@ public class RegistrarService extends AppController {
 
 	@FXML
 	public void crearTrabajador() {
-		if (contraseña.getText().isBlank() || repetirContraseña.getText().isBlank()) {
-			alert("Las contraseñas no pueden estar vacias");
+		if (contraseña.getText().isBlank() || repetirContraseña.getText().isBlank() || tfUsuario.getText().isBlank()) {
+			alert("Ningún campo puede estar vacío");
 			limpiarContraseñas();
 			return;
 		} else if (contraseña.getText().equals(repetirContraseña.getText())) {
@@ -34,8 +34,8 @@ public class RegistrarService extends AppController {
 				limpiarNombre();
 			} else {
 
-				service.insertarTrabajador(
-						new Trabajador(tfUsuario.getText(), contraseña.getText(), cbSuperUsuario.isSelected()));
+				service.insertarTrabajador(new Trabajador(tfUsuario.getText(), codificar(contraseña.getText()),
+						cbSuperUsuario.isSelected()));
 				alertInformativa("USUARIO CREADO CORRECTAMENTE");
 				irIniciarSesion();
 			}

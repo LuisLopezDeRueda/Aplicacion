@@ -1,0 +1,57 @@
+package PantallasService;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+import Controllers.AppController;
+import Modelo.Trabajador;
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class IniciarSesionService extends AppController {
+	@FXML
+	private TextField usuario;
+	@FXML
+	private PasswordField contraseña;
+
+	@FXML
+	public void salir() {
+		salirAplicacion();
+	}
+
+	@FXML
+	public void crearUsuario() {
+		irRegistro();
+	}
+
+	@FXML
+	public void entrar() {
+		MessageDigest digest;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(contraseña.getText().getBytes(StandardCharsets.UTF_8));
+			String encoded = Base64.getEncoder().encodeToString(hash);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Trabajador trabajador = service.consultarTrabajador(usuario.getText(), contraseña.getText());
+		if (trabajador == null) {
+			alert("El usuario no existe");
+			limpiar();
+			return;
+		}
+		setTrabajador(trabajador);
+		UsuarioService services = (UsuarioService) irUsuario();
+		services.empezar();
+	}
+
+	public void limpiar() {
+		usuario.setText("");
+		contraseña.setText("");
+	}
+
+}

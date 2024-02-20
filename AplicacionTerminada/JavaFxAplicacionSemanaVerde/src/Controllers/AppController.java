@@ -1,6 +1,10 @@
 package Controllers;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Optional;
 
 import Modelo.Articulo;
@@ -27,6 +31,9 @@ public class AppController {
 	public static final String CREARCLIENTE = "/pantallas/CrearCliente.fxml";
 	public static final String CONSULTARCLIENTE = "/pantallas/UsuarioConsultar.fxml";
 	public static final String ARTICULOCREAR = "/pantallas/ArticuloCrear.fxml";
+	public static final String ARTICULOGESTIONAR = "/pantallas/GestionarArticulos.fxml";
+	public static final String ARTICULOACTUALIZAR = "/pantallas/ActualizarArticulo.fxml";
+	public static final String ARTICULOBORRAR = "/pantallas/BorrarArticulo.fxml";
 	private static Stage stage;
 	protected static Cliente usuario;
 	protected static Trabajador trabajador;
@@ -128,8 +135,36 @@ public class AppController {
 
 	}
 
+	public AppController irArticuloBorrar() {
+		return cambiarVista(ARTICULOBORRAR);
+
+	}
+
 	public AppController irFactura() {
 		return cambiarVista(FACTURA);
+
+	}
+
+	public AppController irArticuloActualizar() {
+		return cambiarVista(ARTICULOACTUALIZAR);
+
+	}
+
+	public String codificar(String contraseña) {
+		MessageDigest digest;
+		String contraseñaCodificada = "";
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(contraseña.getBytes(StandardCharsets.UTF_8));
+			contraseñaCodificada = Base64.getEncoder().encodeToString(hash);
+		} catch (NoSuchAlgorithmException e) {
+			alert("Problema codificando la contraseña");
+		}
+		return contraseñaCodificada;
+	}
+
+	public AppController irGestoriarArticulos() {
+		return cambiarVista(ARTICULOGESTIONAR);
 
 	}
 

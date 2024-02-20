@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Venta {
 	private List<Articulo> articulos;
-	private Double precioTotal;
-	private Cliente cliente;
+	private String precioTotal;
+	private String cliente;
 
 	public List<Articulo> getArticulos() {
 		return articulos;
@@ -15,19 +15,19 @@ public class Venta {
 		this.articulos = articulos;
 	}
 
-	public Double getPrecioTotal() {
+	public String getPrecioTotal() {
 		return precioTotal;
 	}
 
-	public void setPrecioTotal(Double precioTotal) {
+	public void setPrecioTotal(String precioTotal) {
 		this.precioTotal = precioTotal;
 	}
 
-	public Cliente getCliente() {
+	public String getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(String cliente) {
 		this.cliente = cliente;
 	}
 }

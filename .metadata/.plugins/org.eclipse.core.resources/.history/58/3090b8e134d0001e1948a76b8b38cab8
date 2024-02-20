@@ -1,0 +1,15 @@
+package PantallasService;
+
+import Controllers.AppController;
+import javafx.fxml.FXML;
+
+public class BorrarArticuloService extends AppController{
+	
+	
+	
+	
+	@FXML
+	public void atras() {
+		irGestoriarArticulos();
+	}
+}

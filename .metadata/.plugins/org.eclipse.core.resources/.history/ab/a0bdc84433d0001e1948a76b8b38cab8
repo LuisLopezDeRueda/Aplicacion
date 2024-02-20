@@ -1,0 +1,7 @@
+package PantallasService;
+
+import Controllers.AppController;
+
+public class GestionarArticulosService extends AppController{
+
+}

@@ -36,7 +36,7 @@ public class FacturaService extends AppController {
 
 	@FXML
 	private Label lblDescuento;
-	private Double precioTotal;
+	private String precioTotal;
 
 	@FXML
 	public void initialize() {
@@ -51,10 +51,10 @@ public class FacturaService extends AppController {
 	public void actualizarPrecio(Double precio) {
 
 		if (getUsuario() == null) {
-			precioTotal = precio;
+			precioTotal = precio.toString();
 			labelDinero.setText(precio.toString());
 		} else {
-			precioTotal = precio * 0.95;
+			precioTotal = new DecimalFormat("#.##").format(new BigDecimal(precio * 0.95));
 			labelDinero.setText(precio.toString());
 			lblDescuento.setText(
 					"Descuento por ser cliente: " + new DecimalFormat("#.##").format(new BigDecimal(precio * 0.05)));
@@ -72,7 +72,7 @@ public class FacturaService extends AppController {
 	public void terminarCompra() {
 		if (rndEfectivo.isSelected() || rndTarjeta.isSelected()) {
 			Venta factura = new Venta();
-			factura.setCliente(usuario);
+			factura.setCliente(usuario.getDni());
 			factura.setArticulos(lista);
 			factura.setPrecioTotal(precioTotal);
 			service.insertarVenta(factura);

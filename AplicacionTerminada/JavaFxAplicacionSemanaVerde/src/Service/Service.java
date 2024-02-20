@@ -10,6 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 
 import Modelo.Articulo;
 import Modelo.Cliente;
@@ -60,6 +61,14 @@ public class Service {
 		return result.first();
 	}
 
+	public Articulo consultarArticuloNombre(String nombre){
+		MongoDatabase db = MongoSession.getDatabase();
+		MongoCollection<Articulo> c = db.getCollection("Articulo", Articulo.class);
+		FindIterable<Articulo> result = c.find(Filters.eq("descripcion", nombre));
+
+		return result.first();
+	}
+
 	public Cliente consultarCliente(String dni) {
 		MongoDatabase db = MongoSession.getDatabase();
 		MongoCollection<Cliente> c = db.getCollection("Cliente", Cliente.class);
@@ -85,11 +94,19 @@ public class Service {
 		c.insertOne(venta);
 	}
 
-	public void borrarPeli(Articulo articulo) {
+	public void borrarArticulo(Articulo articulo) {
 		MongoDatabase db = MongoSession.getDatabase();
 		MongoCollection<Articulo> c = db.getCollection("Articulo", Articulo.class);
 		Bson filter = Filters.eq("codBarras", articulo.getCodBarras());
 		c.deleteOne(filter);
+	}
+
+	public void actualizarArticulo(Double precio, String codigo) {
+		MongoDatabase db = MongoSession.getDatabase();
+		MongoCollection<Articulo> c = db.getCollection("Articulo", Articulo.class);
+		Bson filter = Filters.eq("descripcion", codigo);
+		Bson update = Updates.set("precio", precio);
+		c.updateOne(filter, update);
 	}
 
 }

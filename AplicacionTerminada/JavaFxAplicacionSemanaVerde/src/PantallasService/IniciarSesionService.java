@@ -24,7 +24,7 @@ public class IniciarSesionService extends AppController {
 
 	@FXML
 	public void entrar() {
-		Trabajador trabajador = service.consultarTrabajador(usuario.getText(), contraseña.getText());
+		Trabajador trabajador = service.consultarTrabajador(usuario.getText(), codificar(contraseña.getText()));
 		if (trabajador == null) {
 			alert("El usuario no existe");
 			limpiar();

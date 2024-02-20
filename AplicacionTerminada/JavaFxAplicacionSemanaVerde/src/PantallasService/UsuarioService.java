@@ -4,6 +4,7 @@ import Controllers.AppController;
 import Modelo.Cliente;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class UsuarioService extends AppController {
@@ -13,15 +14,21 @@ public class UsuarioService extends AppController {
 	private Boolean correcto;
 	@FXML
 	private Button btArticulo;
+	@FXML
+	private Label lblDNI;
 
 	public UsuarioService() {
 		correcto = false;
-		
 	}
 
 	@FXML
-	public void añadirArticulo() {
-		irArticuloCrear();
+	public void initialize() {
+		usuario = new Cliente();
+	}
+
+	@FXML
+	public void gestionarArticulos() {
+		irGestoriarArticulos();
 	}
 
 	public void empezar() {
@@ -35,7 +42,7 @@ public class UsuarioService extends AppController {
 	@FXML
 	public void clienteExistente() {
 		if (correcto) {
-			Cliente cliente = service.consultarCliente(tfdni.getText());
+			Cliente cliente = service.consultarCliente(codificar(tfdni.getText()));
 			if (cliente != null) {
 				setUsuario(cliente);
 				irCobrar();
@@ -44,6 +51,7 @@ public class UsuarioService extends AppController {
 			}
 		} else {
 			tfdni.setDisable(false);
+			lblDNI.setVisible(true);
 			correcto = true;
 		}
 	}

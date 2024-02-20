@@ -19,7 +19,7 @@ public class CrearClienteService extends AppController {
 			dni.setText("");
 			tfNombre.setText("");
 		} else if (service.consultarCliente(dni.getText()) == null) {
-			service.insertarCliente(new Cliente(dni.getText(), tfNombre.getText()));
+			service.insertarCliente(new Cliente(codificar(dni.getText()), tfNombre.getText()));
 			alertInformativa("El cliente con el dni " + dni.getText() + " ha sido añadido correctamente");
 			atras();
 		} else {

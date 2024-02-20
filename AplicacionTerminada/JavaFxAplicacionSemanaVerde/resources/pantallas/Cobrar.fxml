@@ -40,5 +40,6 @@
       <Button id="botones" layoutX="1020.0" layoutY="457.0" mnemonicParsing="false" onAction="#buscar" prefHeight="43.0" prefWidth="114.0" text="Buscar" />
       <Button id="botones" fx:id="btnBorrar" layoutX="899.0" layoutY="457.0" mnemonicParsing="false" onAction="#borrar" prefHeight="43.0" prefWidth="114.0" />
       <Button id="botones" fx:id="btnBolsa" layoutX="899.0" layoutY="506.0" mnemonicParsing="false" onAction="#bolsa" prefHeight="43.0" prefWidth="114.0" />
+      <Button id="botones" layoutX="1020.0" layoutY="506.0" mnemonicParsing="false" onAction="#borrarArticulo" prefHeight="43.0" prefWidth="114.0" text="Eliminar Articulo" />
    </children>
 </AnchorPane>
