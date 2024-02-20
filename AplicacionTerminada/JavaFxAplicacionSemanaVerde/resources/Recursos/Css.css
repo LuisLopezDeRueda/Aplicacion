@@ -1,0 +1,19 @@
+#pane{
+    -fx-background-image: url("fondoPasillo.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 1168.0 673.0;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30.0, 0.5, 0.0, 0.0); 
+}
+#botones{
+	-fx-background-color: #363a66;
+	-fx-text-fill: white;
+}
+#fondo{
+	-fx-background-color: #CDD7F9;
+}
+#precio{
+	
+	-fx-font-size: 24.0;
+	
+}
