@@ -56,6 +56,18 @@ public class CobrarService extends AppController {
 	}
 
 	@FXML
+	public void borrarArticulo() {
+		Integer index = tabla.getSelectionModel().getSelectedIndex();
+		if (index != null) {
+			Articulo articulo = tabla.getItems().get(index);
+			articulo.setCantidad(articulo.getCantidad() - 1);
+			if(articulo.getCantidad() == 0) {
+				
+			}
+		}
+	}
+
+	@FXML
 	public void borrar() {
 		try {
 			textField.setText(textField.getText().substring(0, textField.getText().length() - 1));
@@ -127,7 +139,7 @@ public class CobrarService extends AppController {
 	public void actualizarLista(ObservableList<Articulo> lista) {
 		this.lista = lista;
 		tabla.setItems(lista);
-		
+
 	}
 
 	public void actualizarPrecio() {

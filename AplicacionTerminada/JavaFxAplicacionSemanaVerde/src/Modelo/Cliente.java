@@ -1,20 +1,16 @@
 package Modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cliente {
 
 	private String dni;
 	private String nombre;
-	
 
 	public Cliente() {
-		
+
 	}
 
 	public Cliente(String dni, String nombre) {
-		
+
 		this.dni = dni;
 		this.nombre = nombre;
 	}
@@ -34,7 +30,6 @@ public class Cliente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	@Override
 	public String toString() {

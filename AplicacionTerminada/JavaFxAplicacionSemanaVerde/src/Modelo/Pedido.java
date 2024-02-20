@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -9,11 +8,6 @@ public class Pedido {
 	private UUID uidPedido;
 	private Cliente cliente;
 	private Date fecha;
-	private Boolean Cliente;
-
-	public void setCliente(Boolean cliente) {
-		Cliente = cliente;
-	}
 
 	public UUID getUidPedido() {
 		return uidPedido;

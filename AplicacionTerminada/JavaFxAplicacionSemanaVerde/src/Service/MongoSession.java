@@ -1,5 +1,9 @@
 package Service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistries;
@@ -16,24 +20,28 @@ import com.mongodb.client.MongoDatabase;
 
 public class MongoSession {
 
-	private static final String USER = "ceudam";
-	private static final String PASS = "ceudam";
-	private static final String DATABASE = "tienda";
-	private static final String SERVER = "cluster0.4kr52et.mongodb.net";
-
 	private static MongoDatabase database;
 
 	public static MongoDatabase getDatabase() {
+		Properties properties = new Properties();
+		try {
+			InputStream is = MongoSession.class.getResourceAsStream("/Config/app-config.properties");
+			properties.load(is);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 		if (database == null) {
-			String connectionString = "mongodb+srv://" + USER + ":" + PASS + "@" + SERVER
-					+ "/?retryWrites=true&w=majority";
+			String connectionString = "mongodb+srv://" + properties.get("USER") + ":" + properties.get("PASS") + "@"
+					+ properties.get("SERVER") + "/?retryWrites=true&w=majority";
 			ServerApi serverApi = ServerApi.builder().version(ServerApiVersion.V1).build();
 			MongoClientSettings settings = MongoClientSettings.builder()
 					.applyConnectionString(new ConnectionString(connectionString)).serverApi(serverApi).build();
 			// Create a new client and connect to the server
 			MongoClient mongoClient = MongoClients.create(settings);
 			// Send a ping to confirm a successful connection
-			database = mongoClient.getDatabase(DATABASE);
+			database = mongoClient.getDatabase((String) properties.get("DATABASE"));
 			database.runCommand(new Document("ping", 1));
 			System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
 

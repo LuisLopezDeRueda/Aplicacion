@@ -3,6 +3,8 @@ package Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.conversions.Bson;
+
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -81,6 +83,13 @@ public class Service {
 		MongoDatabase db = MongoSession.getDatabase();
 		MongoCollection<Venta> c = db.getCollection("Venta", Venta.class);
 		c.insertOne(venta);
+	}
+
+	public void borrarPeli(Articulo articulo) {
+		MongoDatabase db = MongoSession.getDatabase();
+		MongoCollection<Articulo> c = db.getCollection("Articulo", Articulo.class);
+		Bson filter = Filters.eq("codBarras", articulo.getCodBarras());
+		c.deleteOne(filter);
 	}
 
 }
