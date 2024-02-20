@@ -72,7 +72,6 @@ public class CobrarService extends AppController {
 				}
 
 			}
-			actualizarPrecio();
 		} else {
 			alertInformativa("Seleccione un articulo");
 		}

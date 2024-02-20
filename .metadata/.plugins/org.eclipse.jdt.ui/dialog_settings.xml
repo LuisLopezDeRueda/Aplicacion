@@ -26,10 +26,10 @@
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="C:\Users\Luis\Desktop\Aplicacion"/>
 		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
 		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="Launcher - JavaFxAplicacionSemanaVerde"/>
-		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\Luis\Desktop\Tienda.jar"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\Luis\Desktop\Aplicacion\AplicacionTerminada\Tienda.jar"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
-			<item value="C:\Users\Luis\Desktop\Tienda.jar"/>
 			<item value="C:\Users\Luis\Desktop\Aplicacion\AplicacionTerminada\Tienda.jar"/>
+			<item value="C:\Users\Luis\Desktop\Tienda.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
 			<item value="C:\Users\Luis\Desktop\Aplicacion.xml"/>
